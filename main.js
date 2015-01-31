@@ -1,6 +1,6 @@
 'use strict';
 // var langs_to_filter = [];
-var AUTH_TOKEN = '8f085258b13b28681d27875283e646ffbf7778b4';
+var AUTH_TOKEN = '';
 
 function setup() {
     var new_arr = {};
