@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <title>Gists</title>
+        <link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<section>
+
+		<ul class="filterSection">
+			<li>
+				<strong>Show:</strong>
+				<input id="Python"
+				       deafultValue="false"
+				       type="checkbox"
+				       onclick="is_checked('Python')"/>
+				<label>Python</label>
+			</li>
+			<li>
+				<input id="JSON"
+				       deafultValue="false"
+				       type="checkbox"
+				       onclick="is_checked('JSON')"/>
+				<label>JSON</label>
+			</li>
+			<li>
+				<input id="JavaScript"
+				       deafultValue="false"
+				       type="checkbox"
+				       onclick="is_checked('JavaScript')"/>
+				<label>JavaScript</label>
+			</li>
+			<li>
+				<input id="SQL"
+				       deafultValue="false"
+				       type="checkbox"
+				       onclick="is_checked('SQL')"/>
+				<label>SQL</label>
+			</li>
+		</ul>
+
+		</section>
+		<section>
+		<input type="button" name="Search" value="Search for Gists" onclick="results(false, true);">
+		<select id="results" onchange="results(value);">
+			<option value =""> Display 30 Results </option>
+			<option value ="30"> Display 60 Results </option>
+			<option value ="60"> Display 90 Results </option>
+			<option value ="90"> Display 120 Results </option>
+			<option value ="120"> Display 150 Results </option>
+		</select>
+
+		</section>
+		<section id ="results window">
+		</section>
+		<section>
+			<table id="itemsToFilter">
+				<tr id="t_row">
+					<th> Description </th>
+					<th> Language </th>
+				</tr>
+				<thead>
+					<tbody id="table_body">
+					</tbody>
+				</thead>
+			</table>
+		</section>
+
+
+    <script src="main.js"></script>
+	</body>
+</html>

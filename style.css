@@ -1,0 +1,26 @@
+table {
+	padding: 10px;
+	border: 2px solid black;
+	width: 350px;
+	height: 28px;
+}
+td, th {
+	border: 0.5px solid black;
+	padding: 10px;
+	overflow: hidden;
+}
+tr:nth-child(even){
+	background: rgb(221, 221, 221);
+}
+.filterSection li {
+    list-style: none;
+    margin: 0px;
+    padding: 5px;
+    display: inline;
+
+}
+.filterSection {
+    margin: 0px;
+    padding: 0px;
+    background-color: #EEEEEE;
+}
