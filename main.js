@@ -1,7 +1,5 @@
 'use strict';
 // var langs_to_filter = [];
-var AUTH_TOKEN = '';
-
 function setup() {
     var new_arr = {};
     var response = JSON.parse(this.responseText);
