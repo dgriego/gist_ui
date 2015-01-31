@@ -13,41 +13,41 @@
 				<input id="Python"
 				       deafultValue="false"
 				       type="checkbox"
-				       onclick="is_checked('Python')"/>
+				       onclick="results(false, true, 'Python')"/>
 				<label>Python</label>
 			</li>
 			<li>
 				<input id="JSON"
 				       deafultValue="false"
 				       type="checkbox"
-				       onclick="is_checked('JSON')"/>
+				       onclick="results(false, true, 'JSON')"/>
 				<label>JSON</label>
 			</li>
 			<li>
 				<input id="JavaScript"
 				       deafultValue="false"
 				       type="checkbox"
-				       onclick="is_checked('JavaScript')"/>
+				       onclick="results(false, true, 'JavaScript')"/>
 				<label>JavaScript</label>
 			</li>
 			<li>
 				<input id="SQL"
 				       deafultValue="false"
 				       type="checkbox"
-				       onclick="is_checked('SQL')"/>
+				       onclick="results(false, true, 'SQL')"/>
 				<label>SQL</label>
 			</li>
 		</ul>
 
 		</section>
 		<section>
-		<input type="button" name="Search" value="Search for Gists" onclick="results(false, true);">
+		<input type="button" name="Search" value="Search for Gists" onclick="results();">
 		<select id="results" onchange="results(value);">
-			<option value =""> Display 30 Results </option>
-			<option value ="30"> Display 60 Results </option>
-			<option value ="60"> Display 90 Results </option>
-			<option value ="90"> Display 120 Results </option>
-			<option value ="120"> Display 150 Results </option>
+			<option value ="30"> Display 30 Results </option>
+			<option value ="45"> Display 45 Results </option>
+			<option value ="65"> Display 65 Results </option>
+			<option value ="85"> Display 85 Results </option>
+			<option value ="100"> Display 100 Results </option>
 		</select>
 
 		</section>

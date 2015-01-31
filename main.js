@@ -1,32 +1,35 @@
 'use strict';
-// var langs_to_filter = [];
+
 function setup() {
+    console.log('setup');
     var new_arr = {};
     var response = JSON.parse(this.responseText);
-    // var lang_to_filter = this.lang;
-    // langs_to_filter.push(this.lang);
-    console.log(langs_to_filter);
     var tbl_body = document.getElementsByTagName('tbody')[0];
     var gist_desc, gist_lang, lang_key, link;
+    tbl_body.innerHTML = '';
 
-    if(this.filter_active) {
+    if(this.filter_active && this.lang) {
+        console.log('filter_active');
         for(var item of response) {
             lang_key = Object.keys(item.files)[0];
             gist_lang = item.files[lang_key].language;
-            if(gist_lang === this.lang) {
-                new_arr = item;
-                lang_key = Object.keys(new_arr.files)[0];
-                gist_lang = new_arr.files[lang_key].language;
+            for(var i = 0; i < this.lang.length; i++) {
+                if(gist_lang === this.lang[i]) {
+                    new_arr = item;
+                    lang_key = Object.keys(new_arr.files)[0];
+                    gist_lang = new_arr.files[lang_key].language;
 
-                gist_desc = new_arr.description;
-                if(gist_desc === '' || gist_desc === null) {
-                    gist_desc = 'No description';
+                    gist_desc = new_arr.description;
+                    if(gist_desc === '' || gist_desc === null) {
+                        gist_desc = 'No description';
+                    }
+                    link = new_arr.html_url;
+                    setupTable(gist_desc, gist_lang, link);
                 }
-                link = new_arr.html_url;
-                setupTable(gist_desc, gist_lang, link);
             }
         }
     } else {
+        console.log('!filter_active');
         for(var item of response) {
             lang_key = Object.keys(item.files)[0];
             gist_lang = item.files[lang_key].language;
@@ -45,7 +48,7 @@ function setup() {
 
         //create url links
         var a_tag = document.createElement('a');
-        var href = document.createAttribute("href");
+        var href = document.createAttribute('href');
         href.value = link;
         a_tag.setAttributeNode(href);
 
@@ -67,30 +70,38 @@ function setup() {
     }
 }
 
-function is_checked(language) {
-    console.log(language);
-    var langs_to_filter = [];
-    langs_to_filter.push(language);
-    return langs_to_filter;
-}
+var langs_to_filter = [];
+var _per_page;
 
-// document.addEventListener('click', function() {
-//     document.getElementById('Python').
-// }
-
-function results(value, filter_active) {
-    console.log(is_checked());
-    var request = new XMLHttpRequest();
-    if(!value){
-        request.open('GET', 'https://api.github.com/gists/public?access_token=' + AUTH_TOKEN, true);
+function results(per_page, filter_active, checked_lang) {
+    per_page = per_page === undefined ? 30 : per_page;
+    if(checked_lang) {
+        var checked = document.getElementById(checked_lang).checked;
     }
-    else {
-        console.log(document.getElementsByTagName('tbody'));
-        var url = 'https://api.github.com/gists/public?access_token=' + AUTH_TOKEN + '&page=1&per_page=' + value;
-        request.open('GET', url, true);
+    if(checked_lang && checked) {
+        console.log('adding lang');
+        langs_to_filter.push(checked_lang);
+        return;
+    } else if (checked_lang && !checked) {
+        console.log('removing lang');
+        langs_to_filter.splice(checked_lang, 1);
+        return;
+    } else {
+        var url = 'https://api.github.com/gists/public?access_token='
+        url+= AUTH_TOKEN + '&page=1&per_page=' + per_page;
+        var request = new XMLHttpRequest();
+        if(!per_page){
+            request.open('GET', url, true);
+        }
+        else {
+            request.open('GET', url, true);
+        }
     }
     request.onload = setup;
-    // request.lang = lang;
+    request.lang = langs_to_filter;
     request.filter_active = filter_active ? true : false;
+    if(langs_to_filter.length > 0 || filter_active) {
+        request.filter_active = true;
+    }
     request.send();
 }
