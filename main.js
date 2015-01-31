@@ -1,7 +1,6 @@
 'use strict';
 
 function setup() {
-    console.log('setup');
     var new_arr = {};
     var response = JSON.parse(this.responseText);
     var tbl_body = document.getElementsByTagName('tbody')[0];
@@ -9,7 +8,6 @@ function setup() {
     tbl_body.innerHTML = '';
 
     if(this.filter_active && this.lang) {
-        console.log('filter_active');
         for(var item of response) {
             lang_key = Object.keys(item.files)[0];
             gist_lang = item.files[lang_key].language;
@@ -29,7 +27,6 @@ function setup() {
             }
         }
     } else {
-        console.log('!filter_active');
         for(var item of response) {
             lang_key = Object.keys(item.files)[0];
             gist_lang = item.files[lang_key].language;
@@ -71,7 +68,6 @@ function setup() {
 }
 
 var langs_to_filter = [];
-var _per_page;
 
 function results(per_page, filter_active, checked_lang) {
     per_page = per_page === undefined ? 30 : per_page;
@@ -79,11 +75,9 @@ function results(per_page, filter_active, checked_lang) {
         var checked = document.getElementById(checked_lang).checked;
     }
     if(checked_lang && checked) {
-        console.log('adding lang');
         langs_to_filter.push(checked_lang);
         return;
     } else if (checked_lang && !checked) {
-        console.log('removing lang');
         langs_to_filter.splice(checked_lang, 1);
         return;
     } else {
