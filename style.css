@@ -24,3 +24,12 @@ tr:nth-child(even){
     padding: 0px;
     background-color: #EEEEEE;
 }
+
+#itemsToFilter {
+    float: left;
+}
+
+#favorites_table {
+    float: left;
+    margin-left: 50px;
+}
