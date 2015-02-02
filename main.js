@@ -95,7 +95,6 @@ function add_fav(row_id, button_id) {
 }
 
 function remove_fav(row_id) {
-    var clean_row_id = row_id.replace('-', '');
     var row = document.getElementById(row_id);
     document.getElementById('favs_table_body').removeChild(row);
     for(var key in localStorage) {
